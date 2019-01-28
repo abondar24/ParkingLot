@@ -172,4 +172,20 @@ public class DataProcessingTest {
 
     }
 
+    @Test
+    public void printStatusTest(){
+        System.out.println();
+        System.out.println("printStatusTest");
+
+        int lotSize = 2;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+        var cd2=new CarData("222-222", CarColor.WHITE);
+        dp.park(cd2);
+
+        dp.status();
+    }
 }

@@ -60,9 +60,22 @@ public class DataProcessor {
 
     public void status(){
 
+        StringBuilder status = new StringBuilder();
+        status.append(MessagesUtil.STATUS_HEADING);
+        status.append("\n");
+        status.append("\n");
+
         for (CarData carData : parkingLot) {
-            System.out.printf(MessagesUtil.PARK_MSG, carData.toString());
+            status.append(carData.getSlotNum());
+            status.append("\t\t\t\t");
+            status.append(carData.getPlateNum());
+            status.append("\t\t\t\t\t");
+            status.append(carData.getCarColor());
+            status.append("\n");
         }
+
+        System.out.println(status.toString());
+
     }
 
     public CarData[] getParkingLot() {

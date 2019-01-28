@@ -12,5 +12,6 @@ public class MessagesUtil {
     public static final String SLOT_NOT_FOUND = "%d not found\n";
     public static final String PARK_MSG = "park %s\n";
     public static final String LEAVE_MSG = "Slot number %d is free\n";
+    public static final String STATUS_HEADING = "Slot No."+"\t\t"+"Registration No."+"\t\t"+"Color";
 
 }
