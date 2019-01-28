@@ -43,9 +43,6 @@ public class CarData {
 
     @Override
     public String toString() {
-        return "CarData{" +
-                "plateNum='" + plateNum + '\'' +
-                ", carColor=" + carColor +
-                '}';
+        return  plateNum + ' ' + carColor;
     }
 }

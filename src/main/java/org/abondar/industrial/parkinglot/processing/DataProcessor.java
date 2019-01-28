@@ -29,7 +29,7 @@ public class DataProcessor {
 
 
     public void park(CarData carData){
-        var isFull = IntStream.range(0,parkingLot.length).allMatch(Objects::isNull);
+        var isFull = IntStream.range(0,parkingLot.length).allMatch(i->parkingLot[i]!=null);
         if (isFull){
             System.out.print(MessagesUtil.LOT_FULL_MSG);
             return;
@@ -44,16 +44,25 @@ public class DataProcessor {
             carData.setSlotNum(emptySlot+1);
             parkingLot[emptySlot]=carData;
         }
-        System.out.printf(MessagesUtil.PARK_MSG,carData.getPlateNum(), carData.getCarColor());
+        System.out.printf(MessagesUtil.PARK_MSG,carData.toString());
 
     }
 
-    private void leave(Integer slotNum){
+    public void leave(Integer slotNum){
         if (slotNum>parkingLot.length || slotNum<1){
-            System.out.println("Error removing: slot number doesn't exist");
+            System.out.printf(MessagesUtil.SLOT_NOT_FOUND,slotNum);
+            return;
         }
 
         parkingLot[slotNum-1]=null;
+        System.out.printf(MessagesUtil.LEAVE_MSG,slotNum);
+    }
+
+    public void status(){
+
+        for (CarData carData : parkingLot) {
+            System.out.printf(MessagesUtil.PARK_MSG, carData.toString());
+        }
     }
 
     public CarData[] getParkingLot() {
