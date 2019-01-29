@@ -150,7 +150,7 @@ public class DataProcessingTest {
     @Test
     public void leaveTestWrongSlot(){
         System.out.println();
-        System.out.println("leaveTest");
+        System.out.println("leaveTestWrongSlot");
 
         int lotSize = 2;
         DataProcessor dp = new DataProcessor(lotSize);
@@ -188,4 +188,147 @@ public class DataProcessingTest {
 
         dp.status();
     }
+
+    @Test
+    public void carsByColorTest(){
+        System.out.println();
+        System.out.println("carsByColorTest");
+
+        int lotSize = 3;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+        var cd2=new CarData("222-222", CarColor.WHITE);
+        dp.park(cd2);
+
+        var cd3=new CarData("333-3333", CarColor.WHITE);
+        dp.park(cd3);
+
+        var res = dp.getCarsByColor("White");
+
+        assertEquals(2L,res.size());
+        assertTrue(res.contains(cd2));
+        assertTrue(res.contains(cd3));
+    }
+
+
+    @Test
+    public void carsByColorEmptyTest(){
+        System.out.println();
+        System.out.println("carsByColorEmptyTest");
+
+        int lotSize = 3;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+
+        var res = dp.getCarsByColor("White");
+
+        assertEquals(0L,res.size());
+    }
+
+    @Test
+    public void carsByColorNotExistsTest() {
+        System.out.println();
+        System.out.println("carsByColorTest");
+
+        int lotSize = 3;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1 = new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+        var cd2 = new CarData("222-222", CarColor.WHITE);
+        dp.park(cd2);
+
+        var res = dp.getCarsByColor("Purple");
+
+        assertEquals(0L, res.size());
+    }
+
+    @Test
+    public void regNumsByColorTest(){
+        System.out.println();
+        System.out.println("regNumsByColorTest");
+
+        int lotSize = 4;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+        var cd2=new CarData("222-222", CarColor.WHITE);
+        dp.park(cd2);
+
+        var cd3=new CarData("333-3333", CarColor.WHITE);
+        dp.park(cd3);
+
+        var res = dp.getRegNumbersByColor("White");
+
+        assertEquals(2L,res.size());
+        assertTrue(res.contains(cd2.getRegNum()));
+        assertTrue(res.contains(cd3.getRegNum()));
+    }
+
+    @Test
+    public void slotNumsByColorTest(){
+        System.out.println();
+        System.out.println("slotNumsByColorTest");
+
+        int lotSize = 4;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+        var cd2=new CarData("222-222", CarColor.WHITE);
+        dp.park(cd2);
+
+        var cd3=new CarData("333-3333", CarColor.WHITE);
+        dp.park(cd3);
+
+        var res = dp.getSlotNumbersByColor("White");
+
+        assertEquals(2L,res.size());
+        assertTrue(res.contains(cd2.getSlotNum()));
+        assertTrue(res.contains(cd3.getSlotNum()));
+    }
+
+    @Test
+    public void slotNumByRegNumTest(){
+        System.out.println();
+        System.out.println("slotNumByRegNumTest");
+
+        int lotSize = 3;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+
+        var res = dp.getSlotNumberByRegNum(cd1.getRegNum());
+
+        assertEquals(cd1.getSlotNum(),res);
+    }
+
+
+    @Test
+    public void slotNumByRegNumNotExistsTest(){
+        System.out.println();
+        System.out.println("slotNumByRegNumNotExistsTest");
+
+        int lotSize = 3;
+        DataProcessor dp = new DataProcessor(lotSize);
+
+        var cd1=new CarData("111-111", CarColor.BLACK);
+        dp.park(cd1);
+
+
+        var res = dp.getSlotNumberByRegNum("222-222");
+
+        assertEquals((Integer) 0,res);
+    }
+
+
 }

@@ -1,13 +1,10 @@
 package org.abondar.industrial.parkinglot.processing;
 
-import org.abondar.industrial.parkinglot.data.CarData;
+import org.abondar.industrial.parkinglot.data.*;
 import org.abondar.industrial.parkinglot.util.MessagesUtil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.IntStream;
+import java.util.*;
+import java.util.stream.*;
 
 /**
  *
@@ -29,7 +26,7 @@ public class DataProcessor {
 
 
     public void park(CarData carData){
-        var isFull = IntStream.range(0,parkingLot.length).allMatch(i->parkingLot[i]!=null);
+        var isFull = Arrays.stream(parkingLot).allMatch(Objects::nonNull);
         if (isFull){
             System.out.print(MessagesUtil.LOT_FULL_MSG);
             return;
@@ -50,7 +47,7 @@ public class DataProcessor {
 
     public void leave(Integer slotNum){
         if (slotNum>parkingLot.length || slotNum<1){
-            System.out.printf(MessagesUtil.SLOT_NOT_FOUND,slotNum);
+            System.out.println(MessagesUtil.NOT_FOUND);
             return;
         }
 
@@ -68,14 +65,67 @@ public class DataProcessor {
         for (CarData carData : parkingLot) {
             status.append(carData.getSlotNum());
             status.append("\t\t\t\t");
-            status.append(carData.getPlateNum());
-            status.append("\t\t\t\t\t");
+            status.append(carData.getRegNum());
+            status.append("\t\t\t");
             status.append(carData.getCarColor());
             status.append("\n");
         }
 
         System.out.println(status.toString());
 
+    }
+
+    public List<String> getRegNumbersByColor(String color){
+        var carsByColor = getCarsByColor(color);
+
+        return carsByColor.stream().map(CarData::getRegNum).collect(Collectors.toList());
+    }
+
+
+    public List<Integer> getSlotNumbersByColor(String color){
+        var carsByColor = getCarsByColor(color);
+
+        return carsByColor.stream().map(CarData::getSlotNum).collect(Collectors.toList());
+    }
+
+    public List<CarData> getCarsByColor(String color){
+        if (!colorExists(color)){
+            return  new ArrayList<>();
+        }
+
+        var isEmpty = Arrays.stream(parkingLot).allMatch(Objects::isNull);
+        if (isEmpty){
+            return  new ArrayList<>();
+        }
+
+        return Arrays.stream(parkingLot)
+                .filter(Objects::nonNull)
+                .filter(cd-> cd.getCarColor().name().equalsIgnoreCase(color))
+                .collect(Collectors.toList());
+    }
+
+
+    public Integer getSlotNumberByRegNum(String regNum){
+        var res = Arrays.stream(parkingLot)
+                .filter(Objects::nonNull)
+                .filter(cd->cd.getRegNum().equals(regNum)).findFirst();
+
+        if (res.isEmpty()){
+            System.out.println(MessagesUtil.NOT_FOUND);
+            return 0;
+        }
+
+        return res.get().getSlotNum();
+    }
+
+    private boolean colorExists(String color){
+        for (CarColor cc: CarColor.values()){
+           if (cc.name().equalsIgnoreCase(color)){
+               return true;
+           }
+        }
+
+        return false;
     }
 
     public CarData[] getParkingLot() {

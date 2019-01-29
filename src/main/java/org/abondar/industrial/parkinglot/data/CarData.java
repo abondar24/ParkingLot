@@ -6,23 +6,23 @@ package org.abondar.industrial.parkinglot.data;
  */
 public class CarData {
 
-    private String plateNum;
+    private String regNum;
 
     private CarColor carColor;
     private Integer slotNum;
 
-    public CarData(String plateNum, CarColor carColor) {
-        this.plateNum = plateNum;
+    public CarData(String regNum, CarColor carColor) {
+        this.regNum = regNum;
         this.carColor = carColor;
         this.slotNum=null;
     }
 
-    public String getPlateNum() {
-        return plateNum;
+    public String getRegNum() {
+        return regNum;
     }
 
-    public void setPlateNum(String plateNum) {
-        this.plateNum = plateNum;
+    public void setRegNum(String regNum) {
+        this.regNum = regNum;
     }
 
     public CarColor getCarColor() {
@@ -43,6 +43,6 @@ public class CarData {
 
     @Override
     public String toString() {
-        return  plateNum + " " + carColor;
+        return  regNum + " " + carColor;
     }
 }
