@@ -10,7 +10,6 @@ public class MessagesUtil {
     public static final String ALLOCATED_MSG = "Allocated slot number: %d\n";
     public static final String LOT_FULL_MSG = "Sorry, parking lot is full\n";
     public static final String NOT_FOUND = "Not found";
-    public static final String PARK_MSG = "park %s\n";
     public static final String LEAVE_MSG = "Slot number %d is free\n";
     public static final String STATUS_HEADING = "Slot No."+"\t\t"+"Registration No."+"\t\t"+"Color";
 

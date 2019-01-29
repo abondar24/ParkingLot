@@ -7,8 +7,9 @@ public class CommandsUtil {
     public static final String STATUS = "status";
     public static final String CREATE_LOT = "create_parking_lot";
     public static final String REG_NUMBERS_COLOR = "registration_numbers_for_cars_with_colour";
-    public static final String SLOT_NUMBER_COLOR = "slot_numbers_for_cars_with_colour";
+    public static final String SLOT_NUMBERS_COLOR = "slot_numbers_for_cars_with_colour";
     public static final String SLOT_NUMBER_REG_NUM = "slot_number_for_registration_number";
-
-
+    public static final String LOT_NOT_CREATED = "Parking lot not created";
+    public static final String WRONG_COMMAND_FORMAT = "Wrong command format";
+    public static final String COMMAND_NOT_FOUND = "Command not found";
 }
