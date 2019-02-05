@@ -125,3 +125,11 @@ KA-01-HH-1234, KA-01-HH-9999, KA-01-P-333
 1, 2, 4
 6 Not found
 ```
+### Build and run
+
+```yaml 
+mvn clean install
+
+./parking_lot or ./parking_lot <command> <params>
+
+```
