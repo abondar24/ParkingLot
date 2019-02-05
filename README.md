@@ -6,11 +6,10 @@ Each slot is given a number starting at 1 increasing with increasing distance fr
 entry point in steps of one. An automated ticketing system that
 allows customers to use parking lot without human intervention must be created.
 
-When a car enters my parking lot,a ticket issued to the driver. The
+When a car enters  parking lot,a ticket issued to the driver. The
 ticket issuing process includes us documenting the registration number (number plate)
 and the colour of the car and allocating an available parking slot to the car before
-actually handing over a ticket to the driver (we assume that our customers are nice
-enough to always park in the slots allocated to them). The customer should be
+actually handing over a ticket to the driver. The customer should be
 allocated a parking slot which is nearest to the entry. At the exit the customer returns
 the ticket which then marks the slot they were using as being available.
 Due to government regulation, the system should provide me with the ability to find
