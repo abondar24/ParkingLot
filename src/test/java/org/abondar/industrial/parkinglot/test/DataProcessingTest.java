@@ -14,7 +14,8 @@ public class DataProcessingTest {
         System.out.println("createLotTest");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var lot = dp.getParkingLot();
         assertEquals(lotSize,lot.length);
@@ -28,7 +29,8 @@ public class DataProcessingTest {
         System.out.println("parkTest");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -53,7 +55,8 @@ public class DataProcessingTest {
         System.out.println("parkTestParkedBefore");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         cd1.setSlotNum(2);
@@ -71,7 +74,8 @@ public class DataProcessingTest {
         System.out.println("parkTestMiddle");
 
         int lotSize = 4;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         cd1.setSlotNum(2);
@@ -102,7 +106,8 @@ public class DataProcessingTest {
         System.out.println("parkTestFull");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -129,7 +134,8 @@ public class DataProcessingTest {
         System.out.println("leaveTest");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -153,7 +159,8 @@ public class DataProcessingTest {
         System.out.println("leaveTestWrongSlot");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -178,7 +185,8 @@ public class DataProcessingTest {
         System.out.println("printStatusTest");
 
         int lotSize = 2;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -195,7 +203,8 @@ public class DataProcessingTest {
         System.out.println("carsByColorTest");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -220,7 +229,8 @@ public class DataProcessingTest {
         System.out.println("carsByColorEmptyTest");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
 
         var res = dp.getCarsByColor("White");
@@ -234,7 +244,8 @@ public class DataProcessingTest {
         System.out.println("carsByColorTest");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1 = new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -253,7 +264,8 @@ public class DataProcessingTest {
         System.out.println("regNumsByColorTest");
 
         int lotSize = 4;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -277,7 +289,8 @@ public class DataProcessingTest {
         System.out.println("slotNumsByColorTest");
 
         int lotSize = 4;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -301,7 +314,8 @@ public class DataProcessingTest {
         System.out.println("slotNumByRegNumTest");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);
@@ -319,7 +333,8 @@ public class DataProcessingTest {
         System.out.println("slotNumByRegNumNotExistsTest");
 
         int lotSize = 3;
-        DataProcessor dp = new DataProcessor(lotSize);
+        DataProcessor dp = DataProcessor.getInstance();
+        dp.createLot(lotSize);
 
         var cd1=new CarData("111-111", CarColor.BLACK);
         dp.park(cd1);

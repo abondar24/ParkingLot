@@ -1,13 +1,16 @@
 package org.abondar.industrial.parkinglot.test;
 
-import org.abondar.industrial.parkinglot.util.*;
+import org.abondar.industrial.parkinglot.processing.command.CommandSwitcher;
+import org.abondar.industrial.parkinglot.util.FileParserUtil;
 import org.junit.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class InputUtilTest {
+public class CommandSwitcherTest {
 
 
     @Test
@@ -15,8 +18,9 @@ public class InputUtilTest {
         System.out.println("parseFileTest");
 
         String fileName = "/test.txt";
-        InputStream is = InputUtilTest.class.getResourceAsStream(fileName);
-        var res = InputUtil.parseFile(is);
+        InputStream is = CommandSwitcherTest.class.getResourceAsStream(fileName);
+
+        var res = FileParserUtil.parseFile(is);
 
         assertEquals(5L, res.size());
         assertEquals(2L, res.get(0).length);
@@ -26,16 +30,18 @@ public class InputUtilTest {
         assertEquals(2L, res.get(4).length);
     }
 
+
+
     @Test
     public void executeCommandsTest() {
         System.out.println();
         System.out.println("executeCommandsTest");
 
         String fileName = "/testCommands.txt";
-        InputStream is = InputUtilTest.class.getResourceAsStream(fileName);
-        var commands = InputUtil.parseFile(is);
-
-        commands.forEach(InputUtil::executeCommand);
+        InputStream is = CommandSwitcherTest.class.getResourceAsStream(fileName);
+        var commands = FileParserUtil.parseFile(is);
+        CommandSwitcher cs = new CommandSwitcher();
+        commands.forEach(cs::executeCommand);
     }
 
     @Test
@@ -44,10 +50,10 @@ public class InputUtilTest {
         System.out.println("executeNoCreateTest");
 
         String fileName = "/testCommandsNoCreate.txt";
-        InputStream is = InputUtilTest.class.getResourceAsStream(fileName);
-        var commands = InputUtil.parseFile(is);
-
-        commands.forEach(InputUtil::executeCommand);
+        InputStream is = CommandSwitcherTest.class.getResourceAsStream(fileName);
+        var commands = FileParserUtil.parseFile(is);
+        CommandSwitcher cs = new CommandSwitcher();
+        commands.forEach(cs::executeCommand);
     }
 
     @Test
@@ -56,9 +62,9 @@ public class InputUtilTest {
         System.out.println("executeNotFullTest");
 
         String fileName = "/testCommandsNotFull.txt";
-        InputStream is = InputUtilTest.class.getResourceAsStream(fileName);
-        var commands = InputUtil.parseFile(is);
-
-        commands.forEach(InputUtil::executeCommand);
+        InputStream is = CommandSwitcherTest.class.getResourceAsStream(fileName);
+        var commands = FileParserUtil.parseFile(is);
+        CommandSwitcher cs = new CommandSwitcher();
+        commands.forEach(cs::executeCommand);
     }
 }

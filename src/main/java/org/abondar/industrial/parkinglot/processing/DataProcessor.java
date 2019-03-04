@@ -13,9 +13,19 @@ public class DataProcessor {
 
     private CarData[] parkingLot;
 
-    public DataProcessor(int lotSize) {
-        parkingLot = new CarData[lotSize];
+    private static DataProcessor instance;
+    private DataProcessor(){}
 
+    public static DataProcessor getInstance(){
+        if (instance == null){
+            instance = new DataProcessor();
+        }
+
+        return instance;
+    }
+
+    public void createLot(int lotSize) {
+        parkingLot = new CarData[lotSize];
 
         System.out.printf(MessagesUtil.CREATED_LOT_MSG, lotSize);
 
@@ -23,6 +33,11 @@ public class DataProcessor {
 
 
     public void park(CarData carData) {
+        if (parkingLot == null){
+            System.out.print(MessagesUtil.LOT_NOT_CREATED);
+            return;
+        }
+
         var isFull = Arrays.stream(parkingLot).allMatch(Objects::nonNull);
         if (isFull) {
             System.out.print(MessagesUtil.LOT_FULL_MSG);
@@ -43,6 +58,11 @@ public class DataProcessor {
     }
 
     public void leave(Integer slotNum) {
+        if (parkingLot == null){
+            System.out.print(MessagesUtil.LOT_NOT_CREATED);
+            return;
+        }
+
         if (slotNum > parkingLot.length || slotNum < 1) {
             System.out.println(MessagesUtil.NOT_FOUND);
             return;
@@ -53,6 +73,10 @@ public class DataProcessor {
     }
 
     public void status() {
+        if (parkingLot == null){
+            System.out.print(MessagesUtil.LOT_NOT_CREATED);
+            return;
+        }
 
         StringBuilder status = new StringBuilder();
         status.append(MessagesUtil.STATUS_HEADING);
@@ -88,6 +112,11 @@ public class DataProcessor {
     }
 
     public List<CarData> getCarsByColor(String color) {
+        if (parkingLot == null){
+            System.out.print(MessagesUtil.LOT_NOT_CREATED);
+            return new ArrayList<>();
+        }
+
         if (!colorExists(color)) {
             return new ArrayList<>();
         }
@@ -105,6 +134,11 @@ public class DataProcessor {
 
 
     public Integer getSlotNumberByRegNum(String regNum) {
+        if (parkingLot == null){
+            System.out.print(MessagesUtil.LOT_NOT_CREATED);
+            return 0;
+        }
+
         var res = Arrays.stream(parkingLot)
                 .filter(Objects::nonNull)
                 .filter(cd -> cd.getRegNum().equals(regNum)).findFirst();
